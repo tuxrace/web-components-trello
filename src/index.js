@@ -1,10 +1,16 @@
-import "./components/hello";
 import "./components/wc-column";
 import "./components/wc-card";
 
 import "./index.css";
 
 const root = document.getElementById("root");
+const board = document.getElementById("board");
+
+window.addEventListener("load", async () => {
+  const columns = await fetchColumns();
+  renderTop();
+  renderColumns(columns);
+});
 
 const fetchColumns = async () => {
   const res = await fetch("http://localhost:3000/columns", {
@@ -15,38 +21,19 @@ const fetchColumns = async () => {
   return res;
 };
 
-const fetchCards = async () => {
-  const res = await fetch("http://localhost:3000/cards", {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .catch((data) => []);
-  return res;
-};
-
-
 const renderColumns = (columns) => {
-    const data = []
-    const container = document.querySelector(".container")
-    console.log(container);
-    columns.forEach(i => {
-        const ele = document.createElement('wc-column')
-        container.appendChild(ele)
-    });
-   
-}
-
-const render = async() => {
-    const columns = await fetchColumns();
-
-  root.innerHTML = `
-<div>
-    <div class="topBar"><h4>Web Components Trello Like</h4></div>
-    <div class="container">
-        ${renderColumns(columns)}
-    </div>
-</div>
-`;
+  columns.forEach((i) => {
+    const el = document.createElement("wc-column");
+    el.data = i;
+    board.appendChild(el);
+  });
+  return ``;
 };
 
-render();
+const renderTop = async () => {
+  root.innerHTML = `
+        <div>
+            <div class="topBar"><h4>Web Components Trello Like</h4></div>
+        </div>
+    `;
+};
