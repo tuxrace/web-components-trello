@@ -27,7 +27,7 @@ class Column extends HTMLElement {
     console.log(this.cards)
     this.cards.forEach(card => {
       const el = document.createElement('wc-card');
-      el.title = card.title
+      el.data = card
       col.appendChild(el)
     })
     

@@ -1,10 +1,15 @@
 class Card extends HTMLElement {
+  set data(data){
+    this.info = data
+  }
   connectedCallback() {
-    this.info = this.getAttribute('title');
     this.title = this.info.title;
+    this.description = this.info.description;
+
     this.innerHTML = `
         <div class="card">
-          ${this.title}
+          <strong>${this.title}</strong>
+          <p>${this.description}</p>
         </div>
       `;
   }
