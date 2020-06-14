@@ -1,0 +1,37 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #1b71ad;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    margin: 0 8px;
+    display: flex;
+}
+
+.topBar {
+    width: 100%;
+    margin: 0 auto;
+    height: 32px;
+    padding: 16px 8px;
+    background-color: #095292;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    color: #eeeeee;
+}
+
+.column {
+    margin: 24px 16px;
+    height: 300px;
+    min-width: 200px;
+    background-color: #e0ebf3;
+    border-radius: 8px;
+    padding: 8px;
+    color: #555;    
+}
