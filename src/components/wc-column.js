@@ -26,12 +26,15 @@ class Column extends HTMLElement {
 
     this.render();
     this.renderCards();
-    this.renderAdd();
+
+    // Add listener
+    const add = this.shadowRoot.querySelector("#add");
+    add.addEventListener("click", function (e) {
+      console.log('listend to check event');
+      console.log(e);
+  });
   }
 
-  renderAdd(){
-    return `<a href=''>Add a Card...</a>`
-  }
 
   renderCards() {
     const col = this.shadow.querySelector(".cards");
@@ -54,12 +57,15 @@ class Column extends HTMLElement {
             padding: 8px;
             color: #555;    
           }
+          #add {
+            cursor: pointer;
+          }
         </style>
         
         <div class="column">
           ${this.title}
           <div class="cards"></div>
-          <div class="add">Add a Card...</div>
+          <div id="add">Add a Card...</div>
         </div>
       `;
 
