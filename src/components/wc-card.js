@@ -3,13 +3,18 @@ class Card extends HTMLElement {
     super();
     this.shadow = this.attachShadow({mode: "open"})
   }
+
   set data(data){
     this.info = data
   }
+
   connectedCallback() {
     this.title = this.info.title;
     this.description = this.info.description;
+    this.render();
+  }
 
+  render(){
     this.shadow.innerHTML = `
         <style>
           .card {

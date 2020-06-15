@@ -1,29 +1,29 @@
 class Column extends HTMLElement {
-  constructor(){
+  constructor() {
     super();
-    this.shadow = this.attachShadow({mode: "open"})
+    this.shadow = this.attachShadow({ mode: "open" });
   }
 
-  async fetchCards(id){
+  async fetchCards(id) {
     return await fetch(`http://localhost:3000/cards?columnId=${id}`, {
       method: "GET",
     })
       .then((response) => response.json())
       .catch((data) => []);
-  };
-
-  set data(data){
-    this.info = data;
-    this.title = this.info.title
   }
 
-  renderCards(){
-    const col = this.shadow.querySelector('.column');
-    this.cards.forEach(card => {
-      const el = document.createElement('wc-card');
-      el.data = card
-      col.appendChild(el)
-    })
+  set data(data) {
+    this.info = data;
+    this.title = this.info.title;
+  }
+
+  renderCards() {
+    const col = this.shadow.querySelector(".column");
+    this.cards.forEach((card) => {
+      const el = document.createElement("wc-card");
+      el.data = card;
+      col.appendChild(el);
+    });
   }
 
   async connectedCallback() {
@@ -45,12 +45,9 @@ class Column extends HTMLElement {
           ${this.title}
         </div>
       `;
-    
+
     this.renderCards();
   }
-
-  
-
 }
 
 customElements.define("wc-column", Column);
