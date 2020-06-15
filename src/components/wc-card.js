@@ -28,6 +28,7 @@ class Card extends HTMLElement {
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
           }
         </style>
+        
         <div class="card">
           <strong>${this.title}</strong>
           <p>${this.description}</p>

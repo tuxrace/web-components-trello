@@ -17,8 +17,24 @@ class Column extends HTMLElement {
     this.title = this.info.title;
   }
 
+  attributeChangedCallback(){
+
+  }
+
+  async connectedCallback() {
+    this.cards = await this.fetchCards(this.info.id);
+
+    this.render();
+    this.renderCards();
+    this.renderAdd();
+  }
+
+  renderAdd(){
+    return `<a href=''>Add a Card...</a>`
+  }
+
   renderCards() {
-    const col = this.shadow.querySelector(".column");
+    const col = this.shadow.querySelector(".cards");
     this.cards.forEach((card) => {
       const el = document.createElement("wc-card");
       el.data = card;
@@ -26,9 +42,7 @@ class Column extends HTMLElement {
     });
   }
 
-  async connectedCallback() {
-    this.cards = await this.fetchCards(this.info.id);
-
+  render(){
     this.shadow.innerHTML = `
         <style>
           .column {
@@ -41,12 +55,14 @@ class Column extends HTMLElement {
             color: #555;    
           }
         </style>
+        
         <div class="column">
           ${this.title}
+          <div class="cards"></div>
+          <div class="add">Add a Card...</div>
         </div>
       `;
 
-    this.renderCards();
   }
 }
 
