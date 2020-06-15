@@ -23,18 +23,26 @@ class Column extends HTMLElement {
 
   async connectedCallback() {
     this.cards = await this.fetchCards(this.info.id);
+    this.boxVisible = false;
 
     this.render();
     this.renderCards();
 
     // Add listener
-    const add = this.shadowRoot.querySelector("#add");
+    const add = this.shadow.querySelector("#add");
+    const addBox = this.shadow.querySelector("#addBox");
+    console.log(addBox);
+
     add.addEventListener("click", function (e) {
-      console.log('listend to check event');
-      console.log(e);
+      this.boxVisible = !this.boxVisible;
+
+      if (this.boxVisible){
+        addBox.classList.remove('hidden')
+      } else {
+        addBox.classList.add('hidden')
+      }
   });
   }
-
 
   renderCards() {
     const col = this.shadow.querySelector(".cards");
@@ -57,15 +65,32 @@ class Column extends HTMLElement {
             padding: 8px;
             color: #555;    
           }
-          #add {
+          #add:hover {
             cursor: pointer;
+          }
+          #addBox {
+            padding: 8px 0;
+            display: flex;
+            flex-direction: column;
+          }
+          .visible {
+            visibility: visible;
+          }
+          .hidden {
+            visibility: hidden;
           }
         </style>
         
         <div class="column">
           ${this.title}
           <div class="cards"></div>
-          <div id="add">Add a Card...</div>
+          <div href="#" id="add">Add a Card...</div>
+          <div id="addBox" class="hidden">
+            <label for="">Title</label>
+            <input type="text" name="title"/>
+            <label for="">Description</label>
+            <input type="text" name="description"/>
+          </div>
         </div>
       `;
 
