@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --open --colors --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack -d",
     "server": "json-server db.json"
   },
@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@open-wc/testing": "^2.5.17",
     "css-loader": "^3.6.0",
     "jest": "^26.0.1",
     "json-server": "^0.16.1",

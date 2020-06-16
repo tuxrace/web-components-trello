@@ -18,9 +18,8 @@ class Card extends HTMLElement {
     this.shadow.innerHTML = `
         <style>
           .card {
-            margin: 24px 16px;
+            margin: 16px 8px;
             height: 100px;
-            min-width: 200px;
             background-color: #fff;
             border-radius: 8px;
             padding: 8px;
@@ -28,7 +27,7 @@ class Card extends HTMLElement {
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
           }
         </style>
-        
+
         <div class="card">
           <strong>${this.title}</strong>
           <p>${this.description}</p>

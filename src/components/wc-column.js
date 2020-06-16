@@ -1,15 +1,10 @@
+import { fetchCards, addCard } from "../api";
+import './wc-new';
+
 class Column extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
-  }
-
-  async fetchCards(id) {
-    return await fetch(`http://localhost:3000/cards?columnId=${id}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .catch((data) => []);
   }
 
   set data(data) {
@@ -17,31 +12,15 @@ class Column extends HTMLElement {
     this.title = this.info.title;
   }
 
-  attributeChangedCallback(){
-
-  }
+  attributeChangedCallback() {}
 
   async connectedCallback() {
-    this.cards = await this.fetchCards(this.info.id);
+    this.cards = await fetchCards(this.info.id);
     this.boxVisible = false;
 
     this.render();
     this.renderCards();
 
-    // Add listener
-    const add = this.shadow.querySelector("#add");
-    const addBox = this.shadow.querySelector("#addBox");
-    console.log(addBox);
-
-    add.addEventListener("click", function (e) {
-      this.boxVisible = !this.boxVisible;
-
-      if (this.boxVisible){
-        addBox.classList.remove('hidden')
-      } else {
-        addBox.classList.add('hidden')
-      }
-  });
   }
 
   renderCards() {
@@ -53,47 +32,34 @@ class Column extends HTMLElement {
     });
   }
 
-  render(){
+
+
+  render() {
     this.shadow.innerHTML = `
         <style>
           .column {
             margin: 24px 16px;
-            min-height: 300px;
-            width: 300px;
+            min-height: 200px;
+            width: 288px;
             background-color: #e0ebf3;
             border-radius: 8px;
-            padding: 8px;
             color: #555;    
+            padding: 8px;
           }
-          #add:hover {
-            cursor: pointer;
-          }
-          #addBox {
-            padding: 8px 0;
-            display: flex;
-            flex-direction: column;
-          }
-          .visible {
-            visibility: visible;
-          }
-          .hidden {
-            visibility: hidden;
+          
+          @media only screen and (max-width : 640px) {
+            .column {
+              width: 88%;
+            }
           }
         </style>
         
         <div class="column">
-          ${this.title}
+          <strong>${this.title}</strong>
           <div class="cards"></div>
-          <div href="#" id="add">Add a Card...</div>
-          <div id="addBox" class="hidden">
-            <label for="">Title</label>
-            <input type="text" name="title"/>
-            <label for="">Description</label>
-            <input type="text" name="description"/>
-          </div>
+          <wc-new title=${this.info}></wc-new>
         </div>
       `;
-
   }
 }
 
