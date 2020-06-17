@@ -32,7 +32,7 @@ class New extends HTMLElement {
     newCard.addEventListener("click", (e) => {
       this.boxVisible = !this.boxVisible;
       if (this.boxVisible) {
-        newCardBox.style.display = 'block';
+        newCardBox.style.display = 'flex';
         newCard.classList.add("hidden");
       } else {
         newCardBox.style.display = 'none';
