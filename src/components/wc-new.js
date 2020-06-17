@@ -22,32 +22,32 @@ class New extends HTMLElement {
     this.render();
 
     // Add listener
-    const add = this.shadow.querySelector("#newCard");
-    const addBox = this.shadow.querySelector("#newCardBox");
+    const newCard = this.shadow.querySelector("#newCard");
+    const newCardBox = this.shadow.querySelector("#newCardBox");
     const addButton = this.shadow.querySelector("#addButton");
     const cancelButton = this.shadow.querySelector("#cancelButton");
     const column = this.shadow.querySelector(".column");
-    addBox.style.display = 'none';
+    newCardBox.style.display = 'none';
 
-    add.addEventListener("click", (e) => {
+    newCard.addEventListener("click", (e) => {
       this.boxVisible = !this.boxVisible;
       if (this.boxVisible) {
-        addBox.style.display = 'block';
-        add.classList.add("hidden");
+        newCardBox.style.display = 'block';
+        newCard.classList.add("hidden");
       } else {
-        addBox.style.display = 'none';
+        newCardBox.style.display = 'none';
       }
     });
 
     addButton.addEventListener("click", () => {
-      addBox.style.display = 'none';
-      add.classList.remove("hidden");
+      newCardBox.style.display = 'none';
+      newCard.classList.remove("hidden");
       this.clickAddCard();
     });
 
     cancelButton.addEventListener("click", () => {
-        addBox.style.display = 'none';
-        add.classList.remove("hidden");
+        newCardBox.style.display = 'none';
+        newCard.classList.remove("hidden");
      });
   }
 
