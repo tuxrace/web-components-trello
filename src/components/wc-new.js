@@ -24,7 +24,8 @@ class New extends HTMLElement {
     // Add listener
     const add = this.shadow.querySelector("#newCard");
     const addBox = this.shadow.querySelector("#newCardBox");
-    const button = this.shadow.querySelector("button");
+    const addButton = this.shadow.querySelector("#addButton");
+    const cancelButton = this.shadow.querySelector("#cancelButton");
     const column = this.shadow.querySelector(".column");
     addBox.style.display = 'none';
 
@@ -38,11 +39,16 @@ class New extends HTMLElement {
       }
     });
 
-    button.addEventListener("click", () => {
+    addButton.addEventListener("click", () => {
       addBox.style.display = 'none';
       add.classList.remove("hidden");
       this.clickAddCard();
     });
+
+    cancelButton.addEventListener("click", () => {
+        addBox.style.display = 'none';
+        add.classList.remove("hidden");
+     });
   }
 
   async clickAddCard() {
@@ -53,8 +59,10 @@ class New extends HTMLElement {
         description: newDescription.value, 
         columnId: this.info.id,
       }
-    this.onClick(data);
     await addCard(data);
+    this.onClick(data);
+    newTitle.value = '';
+    newDescription.value = '';
   }
 
   render() {
@@ -66,7 +74,7 @@ class New extends HTMLElement {
         textarea {
             height: 64px;
         }
-        .addButton{
+        #addButton{
             background: green;
         }
         #add{
@@ -98,8 +106,8 @@ class New extends HTMLElement {
       <div id="newCardBox">
         Title <input type="text" id="newTitle"></input>
         Description <textarea id="newDescription"></textarea>
-        <button class="addButton">Add</button>
-        <button name="cancelButton">Cancel</button>
+        <button id="addButton">Add</button>
+        <button id="cancelButton">Cancel</button>
       </div>
         `;
   }

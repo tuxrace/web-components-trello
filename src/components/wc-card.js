@@ -23,9 +23,14 @@ class Card extends HTMLElement {
 
     // Event Listeners
     const close = this.shadow.querySelector(".close");
-    close.addEventListener("click", () => {
-      this.onDelete();
+    close.addEventListener("click", (e) => {
+      this.onDelete(this.info.id);
     });
+  }
+
+  disconnectedCallback(){
+    const close = this.shadow.querySelector(".close");
+    this.shadow.removeEventListener("click", close);
   }
 
   render(){

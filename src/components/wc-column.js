@@ -1,4 +1,4 @@
-import { fetchCards, addCard } from "../api";
+import { fetchCards, addCard, deleteCard } from "../api";
 import './wc-new';
 
 class Column extends HTMLElement {
@@ -14,12 +14,7 @@ class Column extends HTMLElement {
     this.title = this.info.title;
   }
 
-  attributeChangedCallback() {}
-
-  async connectedCallback() {
-    this.cards = await fetchCards(this.info.id);
-    this.boxVisible = false;
-
+  connectedCallback() {
     this.render();
     this.renderCards();
     this.renderNewCard();
@@ -29,14 +24,15 @@ class Column extends HTMLElement {
     this.renderAddCards(data);
   }
 
-  handleDelete() {
-    console.log('test')
+  async handleDelete(id) {
+    await deleteCard(id);
     this.renderCards();
   }
 
-  renderCards() {
+  async renderCards() {
+    this.cards = await fetchCards(this.info.id);
     const col = this.shadow.querySelector("#cards");
-    col.innerHTML = '';
+    col.innerHTML = ``;
     this.cards.forEach((card) => {
       const el = document.createElement("wc-card");
       el.data = card;
@@ -54,10 +50,7 @@ class Column extends HTMLElement {
   }
 
   renderAddCards(data) {
-    const col = this.shadow.querySelector("#cards");
-    const el = document.createElement("wc-card");
-    el.data = data;
-    col.appendChild(el);
+    this.renderCards();
   }
 
   render() {
