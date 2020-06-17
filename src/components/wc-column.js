@@ -5,6 +5,8 @@ class Column extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
+    this.handleClick = this.handleClick.bind(this);
+    this.handleDelete= this.handleDelete.bind(this);
   }
 
   set data(data) {
@@ -20,19 +22,43 @@ class Column extends HTMLElement {
 
     this.render();
     this.renderCards();
+    this.renderNewCard();
+  }
 
+  handleClick(data) {
+    this.renderAddCards(data);
+  }
+
+  handleDelete() {
+    console.log('test')
+    this.renderCards();
   }
 
   renderCards() {
-    const col = this.shadow.querySelector(".cards");
+    const col = this.shadow.querySelector("#cards");
+    col.innerHTML = '';
     this.cards.forEach((card) => {
       const el = document.createElement("wc-card");
       el.data = card;
+      el.onDelete = this.handleDelete;
       col.appendChild(el);
     });
   }
 
+  renderNewCard() {
+    const newCard = this.shadow.querySelector("#newCard");
+    const el = document.createElement("wc-new");
+    el.data = this.info;
+    el.onClick = this.handleClick;
+    newCard.appendChild(el);
+  }
 
+  renderAddCards(data) {
+    const col = this.shadow.querySelector("#cards");
+    const el = document.createElement("wc-card");
+    el.data = data;
+    col.appendChild(el);
+  }
 
   render() {
     this.shadow.innerHTML = `
@@ -56,8 +82,8 @@ class Column extends HTMLElement {
         
         <div class="column">
           <strong>${this.title}</strong>
-          <div class="cards"></div>
-          <wc-new title=${this.info}></wc-new>
+          <div id="cards"></div>
+          <div id="newCard"></div>
         </div>
       `;
   }

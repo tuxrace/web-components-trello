@@ -27,13 +27,13 @@ const renderColumns = (columns) => {
     el.data = i;
     board.appendChild(el);
   });
-  return ``;
 };
 
 const renderTop = async () => {
   root.innerHTML = `
         <div>
             <div class="topBar"><h4>Web Components Trello Like</h4></div>
+            <h2>Add Column + </h2>
         </div>
     `;
 };
