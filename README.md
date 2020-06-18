@@ -7,7 +7,7 @@
     npm start
 ```
 
-![screen]("screen.png")
+![screen]("./screen.png")
 
 ## Test
 ```bash
