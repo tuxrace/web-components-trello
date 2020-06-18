@@ -18,3 +18,7 @@
 - Expect an elements class when an event is triggered.
 - Write test cases to cover lines.
 - Test components independently
+
+## Technologies
+
+- Vanilla JS
