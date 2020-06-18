@@ -6,6 +6,7 @@
     npm install
     npm start
 ```
+This will run both frontend and json-server
 
 ![Screen](screen.png "Screen")
 
