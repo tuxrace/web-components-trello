@@ -1,22 +1,20 @@
-const WCTest = require('@open-wc/testing');
+import './wc-column';
 
-require('./wc-column');
-  
-const {
-    html,
-    fixture,
-    expect,
-  } = WCTest;
+describe('Column Components', () => {
+    const el = document.createElement('wc-column');
+    el.data = {
+        id: 1,
+        title: 'Column 1',
+    };
+    document.body.appendChild(el)
 
-describe('Main', () => {
-    let el;
-    before(async () => {
-        // runs before all tests in this block
-        el = await fixture('<wc-column></wc-column>');
-        el.data = {id:1, title: 'Column 1'}
-      });
-    test('Main rendered', async() => {
-        const column = el.shadowRoot.querySelector('.column');
-        expect(column).toBeDefined();
+    test('Column rendered', async() => {
+        expect(el).toBeDefined();
     })
+
+    test('Column rendered', async() => {
+        const allColumns = document.querySelectorAll("wc-column");
+        expect(allColumns).toHaveLength(1);
+    })
+
 })
