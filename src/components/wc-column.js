@@ -1,4 +1,5 @@
 import { fetchCards, addCard, deleteCard } from "../api";
+import './wc-card';
 import './wc-new';
 
 class Column extends HTMLElement {

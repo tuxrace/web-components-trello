@@ -1,5 +1,4 @@
 import "./components/wc-column";
-import "./components/wc-card";
 
 import "./index.css";
 
@@ -33,7 +32,7 @@ const renderTop = async () => {
   root.innerHTML = `
         <div>
             <div class="topBar"><h4>Web Components Trello Like</h4></div>
-            <h2>Add Column + </h2>
+            <h2>My Board</h2>
         </div>
     `;
 };

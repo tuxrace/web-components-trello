@@ -7,6 +7,8 @@
     npm start
 ```
 
+![screen]("screen.png")
+
 ## Test
 ```bash
     npm run test
