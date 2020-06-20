@@ -1,5 +1,5 @@
 # Web components trello clone
-    A trello clone using web components
+> A trello clone using web components
 
 ## Install
 ```bash 
