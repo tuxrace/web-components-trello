@@ -23,5 +23,5 @@
 - Test components independently
 
 ## Technologies
-- Web Components
-- Vanilla JS
+- Web Components.
+- Vanilla JS.
