@@ -10,7 +10,7 @@
     "server": "json-server db.json"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gerard Banasig",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.10.2",
